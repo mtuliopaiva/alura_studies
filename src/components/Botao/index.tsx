@@ -4,20 +4,19 @@ import React from "react";
 import style from './Botao.module.scss'
 
 
-interface IProps {
-  children: React.ReactNode;
-  type?: "button" | "submit" | "reset" | undefined;
+function Botao({onClick, type, children}:Props) {
+    return (
+        <button onClick={onClick} type={type} className={style.botao}>
+            {children}
+        </button>
+    )
 }
 
-class Botao extends React.Component<IProps>{
-    render() {       
-        const { type = "button" } = this.props;
-        return (
-            <button type={type} className={style.botao}>
-                {this.props.children}
-            </button>
-        )
-    }
+interface Props {
+    children: React.ReactNode;
+    type?: "button" | "submit" | "reset" | undefined,
+    //necessario tipar o onclick que é opcional, sendo uma função que retorna void
+    onClick?: () => void;
 }
 
 export default Botao;
